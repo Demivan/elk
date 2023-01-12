@@ -142,7 +142,8 @@ nav_back = Назад
 nav_blocked_domains = Заблоковані домени
 nav_blocked_users = Заблоковані користувачі
 nav_bookmarks = Закладки
-nav_built_at = Оновлено {0}
+nav_built_at = Оновлено {DATE($buildTimeDate, "timeago")}
+  .title = { DATE($buildTimeDate, "long") }
 nav_conversations = Прямі повідомлення
 nav_explore = Огляд
 nav_favourites = Вподобане
@@ -291,7 +292,11 @@ time_ago_options_hour_future = через {n} годин|через {n} годи
 time_ago_options_hour_past = {n} годин тому|{n} годину тому|{n} години тому|{n} годин тому
 time_ago_options_just_now = тільки що
 time_ago_options_minute_future = через {n} хвилин|через {n} хвилину|через {n} хвилини|через {n} хвилин
-time_ago_options_minute_past = {n} хвилин тому|{n} хвилину тому|{n} хвилини тому|{n} хвилин тому
+time_ago_options_minute_past = { $n ->
+  [one] {$n} хвилину тому
+  [few] {$n} хвилини тому
+  *[many] {$n} хвилин тому
+}
 time_ago_options_month_future = через {n} місяців|через {n} місяць|через {n} місяці|через {n} місяців
 time_ago_options_month_past = {n} місяців тому|{n} місяць тому|{n} місяці тому|{n} місяців тому
 time_ago_options_second_future = тільки що|через {n} секунду|через {n} секунди|через {n} секунд

@@ -66,8 +66,8 @@ function useTimeAgoOptions(short: boolean, bundle: FluentBundle): UseTimeAgoOpti
   }
 }
 
-export function getDefaultBundle(): FluentBundle {
-  const bundle: FluentBundle = new FluentBundle(defaultLocale, {
+function createBundle(locale: string, messages: string): FluentBundle {
+  const bundle: FluentBundle = new FluentBundle(locale, {
     functions: {
       DATE: (params: FluentValue[]) => {
         const dateValue = params[0] as FluentDateTime
@@ -85,7 +85,7 @@ export function getDefaultBundle(): FluentBundle {
     },
   })
 
-  bundle.addResource(new FluentResource(defaultMessages))
+  bundle.addResource(new FluentResource(messages))
 
   return bundle
 }
@@ -93,16 +93,12 @@ export function getDefaultBundle(): FluentBundle {
 export async function getBundle(locale: string): Promise<FluentBundle> {
   const { default: messages } = await import(`../locales/${locale}.ftl?raw`)
 
-  // TODO: Customize functions
-  const bundle = new FluentBundle(locale)
-  bundle.addResource(new FluentResource(messages))
-
-  return bundle
+  return createBundle(locale, messages)
 }
 
 const fluent = createFluentVue({
   bundles: [
-    getDefaultBundle(),
+    createBundle(defaultLocale, defaultMessages),
   ],
 })
 
