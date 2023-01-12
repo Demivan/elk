@@ -79,7 +79,13 @@ attachment_remove_label = Remove attachment
 command_activate = Activate
 command_complete = Complete
 command_compose_desc = Write a new post
-command_n-people-in-the-past-n-days = {$count} people in the past {$days} days
+command_n-people-in-the-past-n-days = { $count ->
+  [one] {$count} person
+  *[other] {$count} people
+} in the past { $days ->
+  [one] {$days} day
+  *[other] {$days} days
+}
 command_select_lang = Select language
 command_sign_in_desc = Add an existing account
 command_switch_account = Switch to {$username}
