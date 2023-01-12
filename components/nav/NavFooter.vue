@@ -1,9 +1,7 @@
 <script setup lang="ts">
 const buildInfo = useRuntimeConfig().public.buildInfo
-const timeAgoOptions = useTimeAgoOptions()
 
 const buildTimeDate = new Date(buildInfo.time)
-const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
 
 const colorMode = useColorMode()
 function toggleDark() {
@@ -28,11 +26,7 @@ function toggleDark() {
       </CommonTooltip>
     </div>
     <div>
-      <i18n v-if="isHydrated" path="nav_built_at" :args="{ date: buildTimeDate }">
-        <template #date="{ formattedDate }">
-          <time :datetime="String(buildTimeDate)" :title="formattedDate">{{ buildTimeAgo }}</time>
-        </template>
-      </i18n>
+      <time v-if="isHydrated" v-t:nav_built_at="{ buildTimeDate }" :datetime="String(buildTimeDate)" />
       &middot;
       <!-- TODO click version to show changelog -->
       <span v-if="buildInfo.env === 'release'">v{{ buildInfo.version }}</span>
