@@ -12,7 +12,7 @@ const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumbe
 
 const useSR = $computed(() => forSR(props.count))
 const rawNumber = $computed(() => formatNumber(props.count))
-const humanReadableNumber = $computed(() => formatHumanReadableNumber(props.count * 10000))
+const humanReadableNumber = $computed(() => formatHumanReadableNumber(props.count))
 </script>
 
 <template>
