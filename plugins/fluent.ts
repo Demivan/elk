@@ -91,7 +91,7 @@ export function getDefaultBundle(): FluentBundle {
 }
 
 export async function getBundle(locale: string): Promise<FluentBundle> {
-  const { default: messages } = await import(`./locales/${locale}.ftl`)
+  const { default: messages } = await import(`../locales/${locale}.ftl?raw`)
 
   // TODO: Customize functions
   const bundle = new FluentBundle(locale)
